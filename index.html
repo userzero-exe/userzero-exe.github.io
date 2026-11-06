@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>USER ZERO · Two Worlds · One Soul</title>
+<meta name="description" content="USER ZERO – Human × Machine. Listen, watch and follow on Spotify, YouTube, TikTok and Instagram.">
+<meta name="theme-color" content="#0b0b10">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="USER ZERO">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:title" content="USER ZERO · Two Worlds · One Soul">
+<meta property="og:description" content="Human × Machine. Powered by the same sun. Music from inside the grid.">
+<meta property="og:image" content="og.jpg">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --bg:#0b0b10; --text:#f2f2f5; --muted:#a9abb8;
+    --fire:#ff6a1a; --ice:#3b8cff; --card:#15151d; --line:#2a2a36;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--text)}
+  body{
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    min-height:100svh; line-height:1.5;
+    background:
+      radial-gradient(60vmax 50vmax at -10% 10%, rgba(255,106,26,.16), transparent 60%),
+      radial-gradient(60vmax 50vmax at 110% 90%, rgba(59,140,255,.14), transparent 60%),
+      var(--bg);
+    background-attachment:fixed;
+  }
+  .wrap{
+    max-width:1080px; margin:0 auto;
+    padding:max(28px,env(safe-area-inset-top)) 16px max(32px,env(safe-area-inset-bottom));
+    display:grid; gap:28px; align-items:center;
+  }
+  .photo{
+    position:relative; width:100%; max-width:520px; margin:0 auto; border-radius:22px;
+    padding:2px; background:linear-gradient(135deg,var(--fire),#7a2b10 45%,#163a7a 55%,var(--ice));
+    box-shadow:0 0 40px rgba(255,106,26,.25),0 0 60px rgba(59,140,255,.18);
+  }
+  .photo img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:20px}
+  .panel{width:100%;max-width:440px;margin:0 auto;text-align:center}
+  h1{
+    font-size:clamp(2.4rem,9vw,3.6rem); font-weight:800; letter-spacing:.06em; line-height:1;
+    background:linear-gradient(90deg,#ffd2b8,#fff 45%,#cfe1ff);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .tag{margin-top:12px;font-size:.82rem;letter-spacing:.32em;color:var(--muted);text-transform:uppercase}
+  .rule{height:2px;width:120px;margin:18px auto 16px;border-radius:2px;
+    background:linear-gradient(90deg,var(--fire),var(--ice))}
+  .lead{color:var(--muted);font-size:.98rem}
+  .links{list-style:none;margin-top:26px;display:grid;gap:12px}
+  .btn{
+    display:flex;align-items:center;gap:14px;width:100%;min-height:60px;padding:12px 18px;
+    border-radius:14px;background:var(--card);border:1px solid var(--line);
+    color:var(--text);text-decoration:none;text-align:left;
+    transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease;
+  }
+  .btn:hover,.btn:focus-visible{transform:translateY(-2px);border-color:var(--c);box-shadow:0 0 0 1px var(--c),0 8px 24px -10px var(--c);outline:none}
+  .ico{flex:none;width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:var(--c);color:#fff}
+  .ico svg{width:20px;height:20px}
+  .txt{display:flex;flex-direction:column;line-height:1.2}
+  .txt b{font-size:1.05rem;font-weight:700}
+  .txt small{color:var(--muted);font-size:.82rem}
+  .arrow{margin-left:auto;color:var(--muted);font-size:1.2rem}
+  .spotify{--c:#1db954} .youtube{--c:#ff0033} .tiktok{--c:#25f4ee} .instagram{--c:#d62976}
+  .tiktok .ico{color:#0b0b10}
+  .save{
+    margin-top:22px;padding:14px 16px;border-radius:14px;border:1px dashed var(--line);
+    color:var(--muted);font-size:.88rem;
+  }
+  .save b{color:var(--text)}
+  #install{display:none;margin-top:10px;padding:10px 16px;border-radius:10px;border:0;cursor:pointer;
+    font:inherit;font-weight:700;color:#fff;background:linear-gradient(90deg,var(--fire),var(--ice))}
+  footer{margin-top:22px;font-size:.75rem;color:#6d6f7c;letter-spacing:.08em}
+  @media (min-width:900px){
+    .wrap{grid-template-columns:1fr 1fr;min-height:100svh;gap:56px;padding-top:40px;padding-bottom:40px}
+    .panel{text-align:left;margin:0}
+    .rule{margin-left:0}
+  }
+  @media (prefers-reduced-motion:reduce){.btn{transition:none}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="photo">
+    <img src="user-zero.jpg" width="1200" height="1200" alt="USER ZERO – the duo standing back to back in front of a sky of fire">
+  </div>
+
+  <section class="panel">
+    <h1>USER ZERO</h1>
+    <p class="tag">Two worlds · One soul</p>
+    <div class="rule"></div>
+    <p class="lead">Human × Machine. Powered by the same sun.<br>Music from inside the grid.</p>
+
+    <ul class="links">
+      <li><a class="btn spotify" href="https://open.spotify.com/artist/5guWNJ85dbxTpudvvvYB9k" target="_blank" rel="noopener">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg></span>
+        <span class="txt"><b>Spotify</b><small>Listen to the music</small></span><span class="arrow">›</span></a></li>
+      <li><a class="btn youtube" href="https://www.youtube.com/@userzero-exe" target="_blank" rel="noopener">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="txt"><b>YouTube</b><small>@userzero-exe</small></span><span class="arrow">›</span></a></li>
+      <li><a class="btn tiktok" href="https://www.tiktok.com/@userzero.exe" target="_blank" rel="noopener">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/></svg></span>
+        <span class="txt"><b>TikTok</b><small>@userzero.exe</small></span><span class="arrow">›</span></a></li>
+      <li><a class="btn instagram" href="https://www.instagram.com/user.zero.exe" target="_blank" rel="noopener">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></span>
+        <span class="txt"><b>Instagram</b><small>@user.zero.exe</small></span><span class="arrow">›</span></a></li>
+    </ul>
+
+    <div class="save">
+      <b>Take USER ZERO with you.</b>
+      <span id="saveHint">Add this page to your home screen for instant access.</span>
+      <br><button id="install" type="button">Add to home screen</button>
+    </div>
+
+    <footer>© USER ZERO</footer>
+  </section>
+</main>
+
+<script>
+  (function(){
+    var ua = navigator.userAgent || "";
+    var hint = document.getElementById("saveHint");
+    var btn = document.getElementById("install");
+    var standalone = window.matchMedia("(display-mode: standalone)").matches || navigator.standalone;
+    if (standalone) { document.querySelector(".save").style.display = "none"; }
+    else if (/iPhone|iPad|iPod/.test(ua)) {
+      hint.textContent = "On iPhone: tap Share, then “Add to Home Screen”.";
+    }
+    var deferred = null;
+    window.addEventListener("beforeinstallprompt", function(e){
+      e.preventDefault(); deferred = e; btn.style.display = "inline-block";
+    });
+    btn.addEventListener("click", function(){
+      if (!deferred) return;
+      deferred.prompt();
+      deferred.userChoice.finally(function(){ deferred = null; btn.style.display = "none"; });
+    });
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function(){ navigator.serviceWorker.register("sw.js").catch(function(){}); });
+    }
+  })();
+</script>
+</body>
+</html>
