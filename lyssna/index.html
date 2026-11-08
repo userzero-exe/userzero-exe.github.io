@@ -113,7 +113,9 @@ footer p{margin:0 0 .5rem}
 @media (min-width:1000px){
   body{font-size:1.3rem}
   .hero-bild{height:min(68svh,640px);min-height:420px}
-  .hero-text{max-width:70rem;padding:0 2rem 2rem}
+  .hero-text{max-width:none;margin:0;padding:0 clamp(2rem,4vw,5rem) 2.2rem}
+  .hero h1{font-size:clamp(3rem,5.4vw,6rem)}
+  .hero p{font-size:clamp(1.1rem,1.6vw,1.5rem)}
   .flikar{padding-inline:max(0px,calc((100% - 70rem) / 2))}
   .sida,footer{max-width:70rem;padding-left:2rem;padding-right:2rem}
   p{max-width:46rem}
