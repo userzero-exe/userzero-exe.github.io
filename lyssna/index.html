@@ -22,7 +22,7 @@
   --glod:#ff6a1a;
   --rost:#c93a1f;
   --serif:Georgia,"Iowan Old Style","Palatino Linotype",serif;
-  --kondens:"Avenir Next Condensed","Futura Condensed Extra Bold","Haettenschweiler",Impact,"Arial Narrow",sans-serif;
+  --kondens:"Avenir Next Condensed","Futura Condensed Extra Bold","Haettenschweiler",Impact,"Arial Narrow","Liberation Sans Narrow","Nimbus Sans Narrow","DejaVu Sans Condensed",sans-serif;
 }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -108,6 +108,22 @@ details p{margin-top:.8rem}
 footer{max-width:46rem;margin:0 auto;padding:2rem 1.25rem calc(2.5rem + env(safe-area-inset-bottom));border-top:1px solid var(--linje);color:var(--dov);font-size:1rem}
 footer p{margin:0 0 .5rem}
 @media (prefers-reduced-motion:reduce){.ljus{animation:none}}
+
+/* Bred skärm (dator) */
+@media (min-width:1000px){
+  body{font-size:1.3rem}
+  .hero-bild{height:min(68svh,640px);min-height:420px}
+  .hero-text{max-width:70rem;padding:0 2rem 2rem}
+  .flikar{padding-inline:max(0px,calc((100% - 70rem) / 2))}
+  .sida,footer{max-width:70rem;padding-left:2rem;padding-right:2rem}
+  p{max-width:46rem}
+  .intro{padding:2.8rem 0 1.8rem}
+  .lat-lista{display:grid;grid-template-columns:1fr 1fr;column-gap:2.5rem}
+  .lat{padding:2rem 0 2.2rem}
+  h2{font-size:2.8rem}
+  h3{font-size:2rem}
+  .meta{font-size:1.1rem}
+}
 </style>
 </head>
 <body>
