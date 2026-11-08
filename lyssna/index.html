@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>USER ZERO – Lyssna och titta</title>
+<meta name="description" content="Låtar och bilder från USER ZERO. Inget konto behövs.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#16100e">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta property="og:type" content="website">
+<meta property="og:title" content="USER ZERO – Lyssna och titta">
+<meta property="og:description" content="Låtar och bilder. Inget konto behövs.">
+<meta property="og:image" content="https://userzero-exe.github.io/lyssna/foton/og.jpg">
+<style>
+:root{
+  --aska:#16100e;
+  --yta:#241a17;
+  --linje:#4a352d;
+  --text:#efe7dc;
+  --dov:#bcab9c;
+  --glod:#ff6a1a;
+  --rost:#c93a1f;
+  --serif:Georgia,"Iowan Old Style","Palatino Linotype",serif;
+  --kondens:"Avenir Next Condensed","Futura Condensed Extra Bold","Haettenschweiler",Impact,"Arial Narrow",sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:4.5rem}
+body{margin:0;background:var(--aska);color:var(--text);font-family:var(--serif);font-size:1.15rem;line-height:1.65}
+body.last{overflow:hidden}
+img{display:block;max-width:100%;height:auto}
+button{font:inherit;color:inherit}
+a{color:var(--glod)}
+:focus-visible{outline:3px solid var(--glod);outline-offset:3px}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;background:#000}
+.hero-bild{width:100%;height:min(86svh,820px);min-height:420px;object-fit:cover;object-position:50% 30%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(22,16,14,0) 45%,rgba(22,16,14,.92) 100%);pointer-events:none}
+.hero-text{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:0 1.25rem 1.5rem;max-width:60rem;margin:0 auto}
+.hero h1{margin:0;font-family:var(--kondens);font-weight:800;font-size:clamp(3.6rem,17vw,9rem);line-height:.9;letter-spacing:.02em;
+  background:linear-gradient(#ffffff 8%,#d3cdc4 52%,#8d857b 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{margin:.6rem 0 0;font-family:var(--kondens);font-weight:700;font-size:clamp(1.1rem,4.4vw,1.6rem);letter-spacing:.14em;color:var(--glod)}
+
+/* Flikar */
+.flikar{position:sticky;top:0;z-index:20;display:grid;grid-template-columns:1fr 1fr;background:var(--aska);border-bottom:1px solid var(--linje)}
+.flik{appearance:none;background:none;border:0;border-bottom:5px solid transparent;min-height:3.6rem;padding:.5rem 1rem;cursor:pointer;
+  font-family:var(--kondens);font-weight:800;font-size:1.7rem;letter-spacing:.04em;color:var(--dov)}
+.flik[aria-selected="true"]{color:var(--text);border-bottom-color:var(--glod)}
+
+/* Innehåll */
+.sida{max-width:46rem;margin:0 auto;padding:0 1.25rem 4rem}
+h2{margin:0 0 .6rem;font-family:var(--kondens);font-weight:800;font-size:2.3rem;line-height:1.05;letter-spacing:.02em}
+h3{margin:0 0 .3rem;font-family:var(--kondens);font-weight:800;font-size:1.75rem;line-height:1.1;letter-spacing:.02em}
+p{margin:0 0 1rem;max-width:36rem}
+.intro{padding:2.2rem 0 1.4rem}
+.intro p:last-child{margin-bottom:0}
+.rubrik-rad{display:flex;flex-wrap:wrap;gap:.6rem 1.5rem;align-items:baseline;justify-content:space-between;margin-bottom:.4rem}
+
+/* Låtlista */
+.lat-lista{list-style:none;margin:0;padding:0}
+.lat{padding:2rem 0;border-top:1px solid var(--linje)}
+.ram{position:relative;aspect-ratio:16/9;background:#000;margin-bottom:.9rem}
+.spela{position:absolute;inset:0;display:block;width:100%;height:100%;padding:0;border:0;background:#000;cursor:pointer}
+.spela img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ram iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.ring{position:absolute;left:50%;top:50%;width:5rem;height:5rem;margin:-2.5rem 0 0 -2.5rem;border:5px solid var(--rost);border-radius:50%;background:rgba(22,16,14,.62)}
+.ring::after{content:"";position:absolute;left:50%;top:50%;margin:-.95rem 0 0 -.6rem;border-style:solid;border-width:.95rem 0 .95rem 1.6rem;border-color:transparent transparent transparent var(--text)}
+.spela:hover .ring{border-color:var(--glod)}
+.meta{display:flex;flex-wrap:wrap;gap:.2rem 1.1rem;margin:0 0 .6rem;font-size:1rem;color:var(--dov)}
+.lat p:last-child{margin-bottom:0}
+.kanal{display:inline-block;margin-top:1rem;padding:.95rem 1.5rem;background:var(--glod);color:var(--aska);font-family:var(--kondens);font-weight:800;font-size:1.45rem;letter-spacing:.04em;text-decoration:none}
+.kanal:hover{background:#ff8844}
+
+/* Om */
+.om{margin-top:1rem;padding-top:2.2rem;border-top:1px solid var(--linje)}
+.om figure{margin:0 0 1.6rem}
+.om figure img{width:100%;max-width:26rem}
+.om figcaption{margin-top:.6rem;font-size:1rem;color:var(--dov)}
+.motto{margin:1.6rem 0;padding-left:1rem;border-left:5px solid var(--rost);font-family:var(--kondens);font-weight:700;font-size:1.5rem;line-height:1.3;letter-spacing:.04em}
+details{margin-top:1.8rem;border-top:1px solid var(--linje);padding-top:1rem}
+summary{cursor:pointer;min-height:2.75rem;font-family:var(--kondens);font-weight:800;font-size:1.4rem;letter-spacing:.04em}
+details p{margin-top:.8rem}
+
+/* Foton */
+.fotoinfo{padding:1.6rem 0 1.2rem;color:var(--dov)}
+.fotoinfo p{margin:0}
+.fotoruta{list-style:none;margin:0 auto;padding:0 .75rem 4rem;max-width:70rem;columns:2;column-gap:.6rem}
+.fotoruta li{break-inside:avoid;margin:0 0 .6rem}
+.ruta{display:block;width:100%;padding:0;border:0;background:var(--yta);cursor:pointer}
+.ruta img{width:100%;height:auto}
+@media (min-width:640px){.fotoruta{columns:3}}
+@media (min-width:1000px){.fotoruta{columns:4}}
+
+/* Bildvisning */
+.ljus{position:fixed;inset:0;z-index:50;display:grid;grid-template-rows:auto 1fr auto;background:rgba(14,9,8,.97);animation:in .15s ease-out}
+@keyframes in{from{opacity:0}to{opacity:1}}
+.ljus-topp,.ljus-fot{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:.6rem .9rem;padding-left:max(.9rem,env(safe-area-inset-left));padding-right:max(.9rem,env(safe-area-inset-right))}
+.ljus-fot{padding-bottom:max(.8rem,env(safe-area-inset-bottom))}
+.ljus-scen{min-height:0;display:flex;align-items:center;justify-content:center;padding:0 .5rem}
+.ljus-scen img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+.ljus-nr{font-size:1.05rem;color:var(--dov)}
+.knapp{appearance:none;min-width:7rem;min-height:3.4rem;padding:.4rem 1.2rem;background:var(--yta);border:2px solid var(--linje);cursor:pointer;
+  font-family:var(--kondens);font-weight:800;font-size:1.4rem;letter-spacing:.04em}
+.knapp:hover{border-color:var(--glod)}
+
+footer{max-width:46rem;margin:0 auto;padding:2rem 1.25rem calc(2.5rem + env(safe-area-inset-bottom));border-top:1px solid var(--linje);color:var(--dov);font-size:1rem}
+footer p{margin:0 0 .5rem}
+@media (prefers-reduced-motion:reduce){.ljus{animation:none}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img class="hero-bild" src="foton/foto-01.webp" width="1254" height="1254" fetchpriority="high"
+       alt="USER ZERO: en kvinna med blått cyberöga och en man med solglasögon står rygg mot rygg framför en himmel i eld">
+  <div class="hero-text">
+    <h1>USER ZERO</h1>
+    <p>TWO WORLDS · ONE SOUL</p>
+  </div>
+</header>
+
+<nav class="flikar" role="tablist" aria-label="Välj vy">
+  <button class="flik" role="tab" id="flik-lyssna" data-panel="lyssna" aria-controls="lyssna" aria-selected="true" type="button">Lyssna</button>
+  <button class="flik" role="tab" id="flik-foton" data-panel="foton" aria-controls="foton" aria-selected="false" tabindex="-1" type="button">Foton</button>
+</nav>
+
+<main>
+<section id="lyssna" role="tabpanel" aria-labelledby="flik-lyssna" class="sida">
+  <div class="intro">
+    <h2>Välkommen till min musik</h2>
+    <p>Här finns alla mina låtar samlade, med de senaste överst. Du behöver inget konto och inget program. Tryck på den röda knappen med triangeln för att spela en låt.</p>
+    <p>Under Foton hittar du bilderna från USER ZERO.</p>
+  </div>
+
+  <ul class="lat-lista" id="lat-lista" aria-label="Låtar"></ul>
+
+  <a class="kanal" href="https://www.youtube.com/@userzero-exe" target="_blank" rel="noopener">Öppna alla videor på YouTube</a>
+
+  <section class="om" aria-labelledby="om-rubrik">
+    <h2 id="om-rubrik">Om USER ZERO</h2>
+    <figure>
+      <img src="foton/foto-02.webp" width="1024" height="1536" loading="lazy" alt="Lars-Fredrik Ingvarsson står med korslagda armar i sin verkstad">
+      <figcaption>Lars-Fredrik Ingvarsson, låtskrivare och kompositör</figcaption>
+    </figure>
+    <p>USER ZERO är en oberoende artist skapad av den svenske låtskrivaren och kompositören Lars-Fredrik Ingvarsson.</p>
+    <p>Musiken föds ur verkliga erfarenheter, mänskliga känslor och en fascination för teknik. USER ZERO utforskar platsen där människan och artificiell intelligens möts.</p>
+    <p>Från djupt personliga ballader till kompromisslös samhällskritik berättar låtarna om identitet, tillhörighet, kärlek, orättvisa och det komplicerade i att vara människa.</p>
+    <p>Det finns inga fasta genrer eller gränser. Varje låt får sin egen form, styrd av berättelsen bakom den.</p>
+    <p>Bakom tekniken finns en människa. Bakom varje låt finns en verklig berättelse.</p>
+    <p class="motto">Människa × Maskin.<br>Drivna av samma sol.<br>Musik inifrån nätet.</p>
+
+    <details>
+      <summary>Read in English</summary>
+      <p>USER ZERO is an independent artist created by Swedish songwriter and composer Lars-Fredrik Ingvarsson.</p>
+      <p>Born from real-life experiences, human emotion and a fascination with technology, USER ZERO explores the space where humanity and artificial intelligence meet.</p>
+      <p>From deeply personal ballads to uncompromising social commentary, the music tells stories of identity, belonging, love, injustice and the complexities of being human.</p>
+      <p>There are no fixed genres or boundaries. Every song takes its own shape, guided by the story behind it.</p>
+      <p>Behind the technology is a human being. Behind every song is a real story.</p>
+      <p class="motto">Human × Machine.<br>Powered by the same sun.<br>Music from inside the grid.</p>
+    </details>
+  </section>
+</section>
+
+<section id="foton" role="tabpanel" aria-labelledby="flik-foton" hidden>
+  <div class="sida fotoinfo" style="padding-bottom:1.2rem">
+    <p>Tryck på en bild för att se den större. Svep åt sidan för att bläddra.</p>
+  </div>
+  <ul class="fotoruta" id="fotoruta"></ul>
+</section>
+</main>
+
+<footer>
+  <p>Musiken är skapad med hjälp av AI-teknik. Texter och berättelser: USER ZERO.</p>
+  <p>Human × Machine. Powered by the same sun.</p>
+</footer>
+
+<div class="ljus" id="ljus" role="dialog" aria-modal="true" aria-label="Bildvisning" hidden>
+  <div class="ljus-topp">
+    <span class="ljus-nr" id="ljus-nr" aria-live="polite"></span>
+    <button class="knapp" id="ljus-stang" type="button">Stäng</button>
+  </div>
+  <div class="ljus-scen" id="ljus-scen"><img id="ljus-bild" alt=""></div>
+  <div class="ljus-fot">
+    <button class="knapp" id="ljus-fore" type="button" aria-label="Föregående bild">‹ Förra</button>
+    <button class="knapp" id="ljus-nasta" type="button" aria-label="Nästa bild">Nästa ›</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- Låtar (nyast först). Ändra här för att lägga till eller ta bort. ---------- */
+  var LAT=[
+    {id:"OqN6sIuDp3k",titel:"Powered by ADHD",sprak:"Svenska",tid:"3:18",datum:"8 november 2026",
+     text:"En låt om vad ett långt liv med svår ADHD kan kosta, och om att inte vara sitt misstag."},
+    {id:"4DmmPjf9AAY",titel:"Jag byggde för människan",sprak:"Svenska",tid:"2:58",datum:"5 november 2026",
+     text:"Svensk rap om ett system som byggdes för människan, och om vad som händer när människan hamnar i det. Omslaget är satir med påhittade namn."},
+    {id:"VbX1zXyI5Eg",titel:"Forward",sprak:"English",tid:"5:42",datum:"3 november 2026",
+     text:"På engelska. Baserad på en sann berättelse om att ligga vid vägkanten och ändå gå framåt, steg för steg."},
+    {id:"kg9Vqx9XpHA",titel:"Framåt",sprak:"Svenska",tid:"5:19",datum:"1 november 2026",
+     text:"Baserad på en sann berättelse. En låt för alla som har sett mörkret på nära håll och ändå vägrat ge upp."},
+    {id:"XIJkZDjIsAE",titel:"Vi kom från samma ö",sprak:"Svenska",tid:"5:25",datum:"1 november 2026",
+     text:"En personlig ballad om två människor med samma ursprung i Sri Lanka och helt olika livsöden."},
+    {id:"Q4erHQ_IbFk",titel:"Ingen vill ingen kan",sprak:"Svenska",tid:"3:01",datum:"31 oktober 2026",
+     text:"Satir om valet, förhandlingarna och frågan om vem som egentligen tar ansvar."},
+    {id:"Dv6fQ2F2fuA",titel:"När marken försvinner (RAP Edition 2026)",sprak:"Svenska",tid:"3:27",datum:"27 oktober 2026",
+     text:"Mörk och rå svensk rap om en människa som gör allt rätt, tills kroppen säger stopp och tryggheten försvinner."},
+    {id:"pZzf_-1ZGIA",titel:"When the ground gives way",sprak:"English",tid:"3:14",datum:"21 oktober 2026",
+     text:"Nordisk folkrock på engelska om brutna löften, värdighet och kampen för att bli hörd."},
+    {id:"ECr5AQ46J58",titel:"När marken försvinner",sprak:"Svenska",tid:"3:38",datum:"16 oktober 2026",
+     text:"Svensk vikingarock om människor som kämpar när marken rycks undan."},
+    {id:"oztw_OryzvM",titel:"Systemet vinner jämt",sprak:"Svenska",tid:"3:08",datum:"14 oktober 2026",
+     text:"En samhällskritisk rocklåt om maktlöshet, byråkrati och människan bakom alla beslut och brev."},
+    {id:"MTg1tHQEfVs",titel:"En främling i två länder (Unplugged)",sprak:"Svenska",tid:"5:54",datum:"14 oktober 2026",
+     text:"En personlig berättelse om adoption, identitet och att stå med en fot i två världar. Här i en avskalad version."},
+    {id:"FpzJbWt7_Qw",titel:"En främling i två länder (Rock Ballad)",sprak:"Svenska",tid:"6:09",datum:"14 oktober 2026",
+     text:"Samma berättelse som rockballad: född i Sri Lanka, uppvuxen i Sverige."},
+    {id:"ATL9LMydqh0",titel:"A stranger in both worlds",sprak:"English",tid:"6:24",datum:"11 oktober 2026",
+     text:"En rockballad på engelska om adoption, tillhörighet och sökandet efter en plats att kalla hemma."}
+  ];
+
+  /* ---------- Foton (storlekar fylls i vid bygget) ---------- */
+  var FOTON=[{"tw": 480, "th": 480}, {"tw": 320, "th": 480}, {"tw": 480, "th": 270}, {"tw": 307, "th": 480}, {"tw": 320, "th": 480}, {"tw": 480, "th": 334}, {"tw": 480, "th": 320}, {"tw": 291, "th": 480}, {"tw": 306, "th": 480}, {"tw": 480, "th": 472}, {"tw": 480, "th": 480}, {"tw": 480, "th": 480}, {"tw": 480, "th": 480}, {"tw": 480, "th": 480}, {"tw": 480, "th": 480}, {"tw": 480, "th": 480}, {"tw": 480, "th": 480}, {"tw": 480, "th": 480}, {"tw": 480, "th": 480}, {"tw": 480, "th": 480}, {"tw": 480, "th": 480}, {"tw": 480, "th": 480}, {"tw": 480, "th": 480}, {"tw": 439, "th": 480}, {"tw": 480, "th": 480}, {"tw": 480, "th": 270}, {"tw": 480, "th": 180}, {"tw": 480, "th": 270}, {"tw": 480, "th": 270}];
+
+  function p(n){return (n<10?"0":"")+n;}
+
+  /* ---------- Låtlistan ---------- */
+  var lista=document.getElementById("lat-lista");
+  lista.innerHTML=LAT.map(function(v){
+    return '<li class="lat">'+
+      '<div class="ram"><button class="spela" type="button" data-id="'+v.id+'" data-titel="'+v.titel+'" aria-label="Spela: '+v.titel+'">'+
+        '<img src="https://i.ytimg.com/vi/'+v.id+'/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">'+
+        '<span class="ring" aria-hidden="true"></span></button></div>'+
+      '<h3>'+v.titel+'</h3>'+
+      '<p class="meta"><span>'+v.sprak+'</span><span>'+v.tid+'</span><span>'+v.datum+'</span></p>'+
+      '<p>'+v.text+'</p></li>';
+  }).join("");
+
+  function stoppaAlla(){
+    var ifr=lista.querySelectorAll(".ram iframe");
+    for(var i=0;i<ifr.length;i++){
+      ifr[i].parentElement.querySelector(".spela").hidden=false;
+      ifr[i].remove();
+    }
+  }
+  lista.addEventListener("click",function(e){
+    var b=e.target.closest(".spela");
+    if(!b)return;
+    stoppaAlla();
+    b.hidden=true;
+    var f=document.createElement("iframe");
+    f.src="https://www.youtube-nocookie.com/embed/"+b.dataset.id+"?autoplay=1&rel=0&playsinline=1";
+    f.title=b.dataset.titel;
+    f.allow="autoplay; encrypted-media; picture-in-picture; fullscreen";
+    f.allowFullscreen=true;
+    f.referrerPolicy="strict-origin-when-cross-origin";
+    b.parentElement.appendChild(f);
+  });
+
+  /* ---------- Fotoväggen ---------- */
+  var N=FOTON.length;
+  var vagg=document.getElementById("fotoruta");
+  vagg.innerHTML=FOTON.map(function(f,i){
+    return '<li><button class="ruta" type="button" data-i="'+i+'" aria-label="Visa bild '+(i+1)+' av '+N+'">'+
+      '<img src="foton/thumb-'+p(i+1)+'.webp" width="'+f.tw+'" height="'+f.th+'" alt="" loading="lazy" decoding="async"></button></li>';
+  }).join("");
+
+  /* ---------- Flikar ---------- */
+  var flikar=Array.prototype.slice.call(document.querySelectorAll(".flik"));
+  function visa(namn,flytta){
+    flikar.forEach(function(t){
+      var pa=t.dataset.panel===namn;
+      t.setAttribute("aria-selected",pa?"true":"false");
+      t.tabIndex=pa?0:-1;
+      document.getElementById(t.dataset.panel).hidden=!pa;
+    });
+    if(namn!=="lyssna")stoppaAlla();
+    try{history.replaceState(null,"","#"+namn);}catch(e){}
+    if(flytta){document.querySelector(".flikar").scrollIntoView();}
+  }
+  flikar.forEach(function(t){
+    t.addEventListener("click",function(){visa(t.dataset.panel,true);});
+    t.addEventListener("keydown",function(e){
+      if(e.key==="ArrowRight"||e.key==="ArrowLeft"){
+        var nasta=flikar[(flikar.indexOf(t)+1)%flikar.length];
+        visa(nasta.dataset.panel,false);nasta.focus();
+      }
+    });
+  });
+  if(location.hash==="#foton")visa("foton",false);
+
+  /* ---------- Bildvisning ---------- */
+  var ljus=document.getElementById("ljus"),
+      bild=document.getElementById("ljus-bild"),
+      nr=document.getElementById("ljus-nr"),
+      stang=document.getElementById("ljus-stang"),
+      fore=document.getElementById("ljus-fore"),
+      nasta=document.getElementById("ljus-nasta"),
+      nu=0,fran=null;
+
+  function forladda(i){var j=((i%N)+N)%N;var im=new Image();im.src="foton/foto-"+p(j+1)+".webp";}
+  function visaBild(i){
+    nu=((i%N)+N)%N;
+    bild.src="foton/foto-"+p(nu+1)+".webp";
+    bild.alt="USER ZERO, bild "+(nu+1)+" av "+N;
+    nr.textContent=(nu+1)+" av "+N;
+    forladda(nu+1);forladda(nu-1);
+  }
+  function oppna(i,k){fran=k;ljus.hidden=false;document.body.classList.add("last");visaBild(i);stang.focus();}
+  function stangVisning(){
+    ljus.hidden=true;document.body.classList.remove("last");bild.removeAttribute("src");
+    if(fran)fran.focus();
+  }
+  vagg.addEventListener("click",function(e){
+    var b=e.target.closest(".ruta");
+    if(b)oppna(parseInt(b.dataset.i,10),b);
+  });
+  stang.addEventListener("click",stangVisning);
+  fore.addEventListener("click",function(){visaBild(nu-1);});
+  nasta.addEventListener("click",function(){visaBild(nu+1);});
+  document.getElementById("ljus-scen").addEventListener("click",function(e){
+    if(e.target===this)stangVisning();
+  });
+  document.addEventListener("keydown",function(e){
+    if(ljus.hidden)return;
+    if(e.key==="Escape")stangVisning();
+    else if(e.key==="ArrowLeft")visaBild(nu-1);
+    else if(e.key==="ArrowRight")visaBild(nu+1);
+    else if(e.key==="Tab"){
+      var rad=[stang,fore,nasta],i=rad.indexOf(document.activeElement);
+      e.preventDefault();
+      rad[(i+(e.shiftKey?rad.length-1:1))%rad.length].focus();
+    }
+  });
+  var startX=null;
+  ljus.addEventListener("touchstart",function(e){startX=e.changedTouches[0].clientX;},{passive:true});
+  ljus.addEventListener("touchend",function(e){
+    if(startX===null)return;
+    var dx=e.changedTouches[0].clientX-startX;startX=null;
+    if(Math.abs(dx)>50)visaBild(nu+(dx<0?1:-1));
+  },{passive:true});
+})();
+</script>
+</body>
+</html>
