@@ -126,6 +126,16 @@ footer p{margin:0 0 .5rem}
   h3{font-size:2rem}
   .meta{font-size:1.1rem}
 }
+
+/* Korta klipp (Shorts) */
+.kort-sek{padding-top:2.2rem;border-top:1px solid var(--linje)}
+.kort-sek p{margin-bottom:1.2rem}
+.kort-lista{list-style:none;margin:0 0 .4rem;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:1.6rem 1rem}
+.kort-lista .lat{padding:0;border-top:0}
+.kort-lista .ram{aspect-ratio:9/16;margin-bottom:.6rem}
+.kort-lista h3{font-size:1.3rem}
+@media (min-width:640px){.kort-lista{grid-template-columns:repeat(3,1fr);gap:2rem 1.4rem}}
+@media (min-width:1000px){.kort-lista{grid-template-columns:repeat(5,1fr);gap:2rem 1.1rem}.kort-lista h3{font-size:1.2rem}}
 </style>
 </head>
 <body>
@@ -155,6 +165,13 @@ footer p{margin:0 0 .5rem}
   <ul class="lat-lista" id="lat-lista" aria-label="Låtar"></ul>
 
   <a class="kanal" href="https://www.youtube.com/@userzero-exe" target="_blank" rel="noopener">Öppna alla videor på YouTube</a>
+
+  <section class="kort-sek" aria-labelledby="kort-rubrik">
+    <h2 id="kort-rubrik">Korta klipp</h2>
+    <p>Här är mina korta klipp, gjorda för telefonen. Tryck på knappen med triangeln för att spela.</p>
+    <ul class="kort-lista" id="kort-lista" aria-label="Korta klipp"></ul>
+    <a class="kanal" href="https://www.youtube.com/@userzero-exe/shorts" target="_blank" rel="noopener">Se alla korta klipp på YouTube</a>
+  </section>
 
   <section class="om" aria-labelledby="om-rubrik">
     <h2 id="om-rubrik">Om USER ZERO</h2>
@@ -240,6 +257,14 @@ footer p{margin:0 0 .5rem}
      text:"En rockballad på engelska om adoption, tillhörighet och sökandet efter en plats att kalla hemma."}
   ];
 
+  var KORT=[
+    {id:"bbPSlQafIgo",titel:"Ingen vill ingen kan"},
+    {id:"0e5Tg0dckxs",titel:"When the ground gives way"},
+    {id:"Syd_weHxjdI",titel:"När marken försvinner"},
+    {id:"x3_5R5RlHmY",titel:"Katten i rummet"},
+    {id:"TqDhOQUok50",titel:"Systemet vinner jämt"}
+  ];
+
   /* ---------- Foton (storlekar fylls i vid bygget) ---------- */
   var FOTON=[{"tw": 480, "th": 480}, {"tw": 320, "th": 480}, {"tw": 480, "th": 270}, {"tw": 307, "th": 480}, {"tw": 320, "th": 480}, {"tw": 480, "th": 334}, {"tw": 480, "th": 320}, {"tw": 291, "th": 480}, {"tw": 306, "th": 480}, {"tw": 480, "th": 472}, {"tw": 480, "th": 480}, {"tw": 480, "th": 480}, {"tw": 480, "th": 480}, {"tw": 480, "th": 480}, {"tw": 480, "th": 480}, {"tw": 480, "th": 480}, {"tw": 480, "th": 480}, {"tw": 480, "th": 480}, {"tw": 480, "th": 480}, {"tw": 480, "th": 480}, {"tw": 480, "th": 480}, {"tw": 480, "th": 480}, {"tw": 480, "th": 480}, {"tw": 439, "th": 480}, {"tw": 480, "th": 480}, {"tw": 480, "th": 270}, {"tw": 480, "th": 180}, {"tw": 480, "th": 270}, {"tw": 480, "th": 270}];
 
@@ -257,14 +282,23 @@ footer p{margin:0 0 .5rem}
       '<p>'+v.text+'</p></li>';
   }).join("");
 
+  var kort=document.getElementById("kort-lista");
+  kort.innerHTML=KORT.map(function(v){
+    return '<li class="lat">'+
+      '<div class="ram"><button class="spela" type="button" data-id="'+v.id+'" data-titel="'+v.titel+'" aria-label="Spela: '+v.titel+'">'+
+        '<img src="https://i.ytimg.com/vi/'+v.id+'/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">'+
+        '<span class="ring" aria-hidden="true"></span></button></div>'+
+      '<h3>'+v.titel+'</h3></li>';
+  }).join("");
+
   function stoppaAlla(){
-    var ifr=lista.querySelectorAll(".ram iframe");
+    var ifr=document.querySelectorAll(".ram iframe");
     for(var i=0;i<ifr.length;i++){
       ifr[i].parentElement.querySelector(".spela").hidden=false;
       ifr[i].remove();
     }
   }
-  lista.addEventListener("click",function(e){
+  function spelaKlick(e){
     var b=e.target.closest(".spela");
     if(!b)return;
     stoppaAlla();
@@ -276,7 +310,9 @@ footer p{margin:0 0 .5rem}
     f.allowFullscreen=true;
     f.referrerPolicy="strict-origin-when-cross-origin";
     b.parentElement.appendChild(f);
-  });
+  }
+  lista.addEventListener("click",spelaKlick);
+  kort.addEventListener("click",spelaKlick);
 
   /* ---------- Fotoväggen ---------- */
   var N=FOTON.length;
