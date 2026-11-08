@@ -44,9 +44,10 @@ a{color:var(--glod)}
 .hero p{margin:.6rem 0 0;font-family:var(--kondens);font-weight:700;font-size:clamp(1.1rem,4.4vw,1.6rem);letter-spacing:.14em;color:var(--glod)}
 
 /* Flikar */
-.flikar{position:sticky;top:0;z-index:20;display:grid;grid-template-columns:1fr 1fr;background:var(--aska);border-bottom:1px solid var(--linje)}
+.flikar{position:sticky;top:0;z-index:20;display:grid;grid-template-columns:repeat(3,1fr);background:var(--aska);border-bottom:1px solid var(--linje)}
 .flik{appearance:none;background:none;border:0;border-bottom:5px solid transparent;min-height:3.6rem;padding:.5rem 1rem;cursor:pointer;
   font-family:var(--kondens);font-weight:800;font-size:1.7rem;letter-spacing:.04em;color:var(--dov)}
+@media (max-width:480px){.flik{font-size:1.5rem;padding:.5rem .3rem}}
 .flik[aria-selected="true"]{color:var(--text);border-bottom-color:var(--glod)}
 
 /* Innehåll */
@@ -128,8 +129,7 @@ footer p{margin:0 0 .5rem}
 }
 
 /* Korta klipp (Shorts) */
-.kort-sek{padding-top:2.2rem;border-top:1px solid var(--linje)}
-.kort-sek p{margin-bottom:1.2rem}
+#klipp .kanal{margin-top:1.2rem}
 .kort-lista{list-style:none;margin:0 0 .4rem;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:1.6rem 1rem}
 .kort-lista .lat{padding:0;border-top:0}
 .kort-lista .ram{aspect-ratio:9/16;margin-bottom:.6rem}
@@ -151,6 +151,7 @@ footer p{margin:0 0 .5rem}
 
 <nav class="flikar" role="tablist" aria-label="Välj vy">
   <button class="flik" role="tab" id="flik-lyssna" data-panel="lyssna" aria-controls="lyssna" aria-selected="true" type="button">Lyssna</button>
+  <button class="flik" role="tab" id="flik-klipp" data-panel="klipp" aria-controls="klipp" aria-selected="false" tabindex="-1" type="button">Klipp</button>
   <button class="flik" role="tab" id="flik-foton" data-panel="foton" aria-controls="foton" aria-selected="false" tabindex="-1" type="button">Foton</button>
 </nav>
 
@@ -159,19 +160,12 @@ footer p{margin:0 0 .5rem}
   <div class="intro">
     <h2>Välkommen till min musik</h2>
     <p>Här finns alla mina låtar samlade, med de senaste överst. Du behöver inget konto och inget program. Tryck på den röda knappen med triangeln för att spela en låt.</p>
-    <p>Under Foton hittar du bilderna från USER ZERO.</p>
+    <p>Under Klipp hittar du mina korta klipp, och under Foton bilderna från USER ZERO.</p>
   </div>
 
   <ul class="lat-lista" id="lat-lista" aria-label="Låtar"></ul>
 
   <a class="kanal" href="https://www.youtube.com/@userzero-exe" target="_blank" rel="noopener">Öppna alla videor på YouTube</a>
-
-  <section class="kort-sek" aria-labelledby="kort-rubrik">
-    <h2 id="kort-rubrik">Korta klipp</h2>
-    <p>Här är mina korta klipp, gjorda för telefonen. Tryck på knappen med triangeln för att spela.</p>
-    <ul class="kort-lista" id="kort-lista" aria-label="Korta klipp"></ul>
-    <a class="kanal" href="https://www.youtube.com/@userzero-exe/shorts" target="_blank" rel="noopener">Se alla korta klipp på YouTube</a>
-  </section>
 
   <section class="om" aria-labelledby="om-rubrik">
     <h2 id="om-rubrik">Om USER ZERO</h2>
@@ -196,6 +190,15 @@ footer p{margin:0 0 .5rem}
       <p class="motto">Human × Machine.<br>Powered by the same sun.<br>Music from inside the grid.</p>
     </details>
   </section>
+</section>
+
+<section id="klipp" role="tabpanel" aria-labelledby="flik-klipp" class="sida" hidden>
+  <div class="intro">
+    <h2 id="kort-rubrik">Korta klipp</h2>
+    <p>Här är mina korta klipp, gjorda för telefonen. Tryck på knappen med triangeln för att spela.</p>
+  </div>
+  <ul class="kort-lista" id="kort-lista" aria-label="Korta klipp"></ul>
+  <a class="kanal" href="https://www.youtube.com/@userzero-exe/shorts" target="_blank" rel="noopener">Se alla korta klipp på YouTube</a>
 </section>
 
 <section id="foton" role="tabpanel" aria-labelledby="flik-foton" hidden>
@@ -331,7 +334,7 @@ footer p{margin:0 0 .5rem}
       t.tabIndex=pa?0:-1;
       document.getElementById(t.dataset.panel).hidden=!pa;
     });
-    if(namn!=="lyssna")stoppaAlla();
+    stoppaAlla();
     try{history.replaceState(null,"","#"+namn);}catch(e){}
     if(flytta){document.querySelector(".flikar").scrollIntoView();}
   }
@@ -345,6 +348,7 @@ footer p{margin:0 0 .5rem}
     });
   });
   if(location.hash==="#foton")visa("foton",false);
+  if(location.hash==="#klipp")visa("klipp",false);
 
   /* ---------- Bildvisning ---------- */
   var ljus=document.getElementById("ljus"),
