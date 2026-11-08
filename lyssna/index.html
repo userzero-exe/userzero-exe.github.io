@@ -136,6 +136,15 @@ footer p{margin:0 0 .5rem}
 .kort-lista h3{font-size:1.3rem}
 @media (min-width:640px){.kort-lista{grid-template-columns:repeat(3,1fr);gap:2rem 1.4rem}}
 @media (min-width:1000px){.kort-lista{grid-template-columns:repeat(5,1fr);gap:2rem 1.1rem}.kort-lista h3{font-size:1.2rem}}
+
+/* Klippvy (helskärm för Shorts) */
+.klippvy{position:fixed;inset:0;z-index:60;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;overflow:hidden;background:#0e0908;animation:in .15s ease-out}
+.kv-topp,.kv-fot{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:.6rem .9rem;padding-top:max(.6rem,env(safe-area-inset-top));padding-left:max(.9rem,env(safe-area-inset-left));padding-right:max(.9rem,env(safe-area-inset-right))}
+.kv-fot{padding-top:.6rem;padding-bottom:max(.8rem,env(safe-area-inset-bottom))}
+.kv-titel{flex:1;min-width:0;text-align:right;font-family:var(--kondens);font-weight:800;font-size:1.25rem;letter-spacing:.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kv-scen{min-height:0;display:flex;align-items:center;justify-content:center;padding:0 .5rem}
+.kv-scen iframe{height:100%;width:min(100%,calc((100svh - 8.5rem) * 9 / 16));border:0;background:#000}
+.kv-nr{font-size:1.05rem;color:var(--dov)}
 </style>
 </head>
 <body>
@@ -200,6 +209,12 @@ footer p{margin:0 0 .5rem}
   <ul class="kort-lista" id="kort-lista" aria-label="Korta klipp"></ul>
   <a class="kanal" href="https://www.youtube.com/@userzero-exe/shorts" target="_blank" rel="noopener">Se alla korta klipp på YouTube</a>
 </section>
+
+<div class="klippvy" id="klippvy" role="dialog" aria-modal="true" aria-label="Spelar kort klipp" hidden>
+  <div class="kv-topp"><button class="knapp" id="kv-tillbaka" type="button">&larr; Tillbaka</button><span class="kv-titel" id="kv-titel"></span></div>
+  <div class="kv-scen" id="kv-scen"></div>
+  <div class="kv-fot"><button class="knapp" id="kv-fore" type="button">&lsaquo; Förra</button><span class="kv-nr" id="kv-nr"></span><button class="knapp" id="kv-nasta" type="button">Nästa &rsaquo;</button></div>
+</div>
 
 <section id="foton" role="tabpanel" aria-labelledby="flik-foton" hidden>
   <div class="sida fotoinfo" style="padding-bottom:1.2rem">
@@ -286,9 +301,9 @@ footer p{margin:0 0 .5rem}
   }).join("");
 
   var kort=document.getElementById("kort-lista");
-  kort.innerHTML=KORT.map(function(v){
+  kort.innerHTML=KORT.map(function(v,i){
     return '<li class="lat">'+
-      '<div class="ram"><button class="spela" type="button" data-id="'+v.id+'" data-titel="'+v.titel+'" aria-label="Spela: '+v.titel+'">'+
+      '<div class="ram"><button class="spela" type="button" data-i="'+i+'" data-id="'+v.id+'" data-titel="'+v.titel+'" aria-label="Spela: '+v.titel+'">'+
         '<img src="https://i.ytimg.com/vi/'+v.id+'/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">'+
         '<span class="ring" aria-hidden="true"></span></button></div>'+
       '<h3>'+v.titel+'</h3></li>';
@@ -315,7 +330,62 @@ footer p{margin:0 0 .5rem}
     b.parentElement.appendChild(f);
   }
   lista.addEventListener("click",spelaKlick);
-  kort.addEventListener("click",spelaKlick);
+
+  /* ---------- Helskärmsvy för Shorts ---------- */
+  var kv=document.getElementById("klippvy"),kvScen=document.getElementById("kv-scen"),
+      kvTitel=document.getElementById("kv-titel"),kvNr=document.getElementById("kv-nr"),
+      kvBack=document.getElementById("kv-tillbaka"),kvFore=document.getElementById("kv-fore"),kvNasta=document.getElementById("kv-nasta");
+  var kvI=0,kvOppen=false,kvPush=false,kvFran=null;
+  function kvVisa(i){
+    kvI=((i%KORT.length)+KORT.length)%KORT.length;
+    var v=KORT[kvI];
+    kvScen.innerHTML="";
+    var fr=document.createElement("iframe");
+    fr.src="https://www.youtube-nocookie.com/embed/"+v.id+"?autoplay=1&rel=0&playsinline=1";
+    fr.title=v.titel;
+    fr.allow="autoplay; encrypted-media; picture-in-picture; fullscreen";
+    fr.allowFullscreen=true;
+    fr.referrerPolicy="strict-origin-when-cross-origin";
+    kvScen.appendChild(fr);
+    kvTitel.textContent=v.titel;
+    kvNr.textContent=(kvI+1)+" av "+KORT.length;
+  }
+  function kvOppna(i,k){
+    stoppaAlla();
+    kvFran=k;kv.hidden=false;kvOppen=true;document.body.classList.add("last");
+    kvVisa(i);
+    try{history.pushState({klipp:1},"","#klipp");kvPush=true;}catch(e){kvPush=false;}
+    kvBack.focus();
+  }
+  function kvStang(){
+    if(!kvOppen)return;
+    kvOppen=false;kv.hidden=true;kvScen.innerHTML="";
+    document.body.classList.remove("last");
+    if(kvFran&&kvFran.focus)kvFran.focus();
+  }
+  function kvTillbaka(){
+    if(kvPush){kvPush=false;try{history.back();return;}catch(e){}}
+    kvStang();
+  }
+  window.addEventListener("popstate",function(){kvPush=false;kvStang();});
+  kvBack.addEventListener("click",kvTillbaka);
+  kvFore.addEventListener("click",function(){kvVisa(kvI-1);});
+  kvNasta.addEventListener("click",function(){kvVisa(kvI+1);});
+  document.addEventListener("keydown",function(e){
+    if(!kvOppen)return;
+    if(e.key==="Escape"){kvTillbaka();}
+    else if(e.key==="Tab"){
+      var els=[kvBack,kvFore,kvNasta],i=els.indexOf(document.activeElement);
+      if(e.shiftKey&&i<=0){e.preventDefault();els[2].focus();}
+      else if(!e.shiftKey&&i===2){e.preventDefault();els[0].focus();}
+      else if(i===-1){e.preventDefault();els[0].focus();}
+    }
+  });
+  kort.addEventListener("click",function(e){
+    var b=e.target.closest(".spela");
+    if(!b)return;
+    kvOppna(parseInt(b.dataset.i,10),b);
+  });
 
   /* ---------- Fotoväggen ---------- */
   var N=FOTON.length;
